@@ -16,7 +16,7 @@ public interface CategoryRest {
     @GetMapping(path = "/get")
     ResponseEntity<List<Category>> getAllCategory(@RequestParam(required = false) String filterValue);
 
-    @PostMapping(path = "update")
+    @PostMapping(path = "/update")
     ResponseEntity<String> updateCategory(@RequestBody(required = true) Map<String, String> requestMap);
 
 }
