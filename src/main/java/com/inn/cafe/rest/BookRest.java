@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @RequestMapping(path = "/books")
 public interface BookRest {
 
