@@ -3,10 +3,10 @@ package com.inn.cafe.serviceImpl;
 import com.google.common.base.Strings;
 import com.inn.cafe.JWT.JwtFilter;
 import com.inn.cafe.POJO.Category;
-import com.inn.cafe.constants.CafeConstants;
+import com.inn.cafe.constants.BookstoreConstants;
 import com.inn.cafe.dao.CategoryDao;
 import com.inn.cafe.service.CategoryService;
-import com.inn.cafe.utils.CafeUtils;
+import com.inn.cafe.utils.BookstoreUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,15 +34,15 @@ public class CategoryServiceImpl implements CategoryService {
             if (jwtFilter.isAdmin()) {
                 if (validateCategoryMap(requestMap, false)) {
                     categoryDao.save(getCategoryFromMap(requestMap, false));
-                    return CafeUtils.getResponseEntity("Category Added Successfully", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Category Added Successfully", HttpStatus.OK);
                 }
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private boolean validateCategoryMap(Map<String, String> requestMap, boolean validateId) {
@@ -87,19 +87,19 @@ public class CategoryServiceImpl implements CategoryService {
                     Optional optional = categoryDao.findById(Integer.parseInt(requestMap.get("id")));
                     if (!optional.isEmpty()) {
                         categoryDao.save(getCategoryFromMap(requestMap, true));
-                        return CafeUtils.getResponseEntity("Category Updated Successfully", HttpStatus.OK);
+                        return BookstoreUtils.getResponseEntity("Category Updated Successfully", HttpStatus.OK);
                     } else {
-                        return CafeUtils.getResponseEntity("Category ID does not exist", HttpStatus.OK);
+                        return BookstoreUtils.getResponseEntity("Category ID does not exist", HttpStatus.OK);
                     }
                 }
-                return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

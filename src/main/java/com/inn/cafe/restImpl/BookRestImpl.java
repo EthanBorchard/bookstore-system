@@ -1,16 +1,15 @@
 package com.inn.cafe.restImpl;
 
-import com.inn.cafe.constants.CafeConstants;
+import com.inn.cafe.constants.BookstoreConstants;
 import com.inn.cafe.rest.BookRest;
 import com.inn.cafe.service.BookService;
-import com.inn.cafe.utils.CafeUtils;
+import com.inn.cafe.utils.BookstoreUtils;
 import com.inn.cafe.wrapper.BookWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ public class BookRestImpl implements BookRest {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class BookRestImpl implements BookRest {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
@@ -58,7 +57,7 @@ public class BookRestImpl implements BookRest {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class BookRestImpl implements BookRest {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override

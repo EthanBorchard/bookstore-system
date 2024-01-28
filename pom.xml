@@ -11,8 +11,8 @@
 	<groupId>com.inn.cafe</groupId>
 	<artifactId>com.inn.cafe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Cafe Management System</name>
-	<description>Cafe Management System Project</description>
+	<name>Bookstore System</name>
+	<description>Bookstore System Project</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

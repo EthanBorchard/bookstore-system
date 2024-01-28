@@ -1,6 +1,6 @@
 package com.inn.cafe.constants;
 
-public class CafeConstants {
+public class BookstoreConstants {
 
     public static final String SOMETHING_WENT_WRONG = "Something Went Wrong.";
 

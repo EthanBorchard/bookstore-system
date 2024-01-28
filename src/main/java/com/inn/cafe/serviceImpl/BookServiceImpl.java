@@ -3,12 +3,11 @@ package com.inn.cafe.serviceImpl;
 import com.inn.cafe.JWT.JwtFilter;
 import com.inn.cafe.POJO.Book;
 import com.inn.cafe.POJO.Category;
-import com.inn.cafe.constants.CafeConstants;
+import com.inn.cafe.constants.BookstoreConstants;
 import com.inn.cafe.dao.BookDao;
 import com.inn.cafe.service.BookService;
-import com.inn.cafe.utils.CafeUtils;
+import com.inn.cafe.utils.BookstoreUtils;
 import com.inn.cafe.wrapper.BookWrapper;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,16 +33,16 @@ public class BookServiceImpl implements BookService {
             if (jwtFilter.isAdmin()) {
                 if (validateBookMap(requestMap, false)) {
                     bookDao.save(getBookFromMap(requestMap, false));
-                    return CafeUtils.getResponseEntity("Book Added Successfully", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Book Added Successfully", HttpStatus.OK);
                 }
-                return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private boolean validateBookMap(Map<String, String> requestMap, boolean validateId) {
@@ -94,20 +93,20 @@ public class BookServiceImpl implements BookService {
                         Book book = getBookFromMap(requestMap, true);
                         book.setStatus(optional.get().getStatus());
                         bookDao.save(book);
-                        return CafeUtils.getResponseEntity("Book Updated Successfully", HttpStatus.OK);
+                        return BookstoreUtils.getResponseEntity("Book Updated Successfully", HttpStatus.OK);
                     } else {
-                        return CafeUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
+                        return BookstoreUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
                     }
                 } else {
-                    return CafeUtils.getResponseEntity(CafeConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+                    return BookstoreUtils.getResponseEntity(BookstoreConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
                 }
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
@@ -117,17 +116,17 @@ public class BookServiceImpl implements BookService {
                 Optional optional = bookDao.findById(id);
                 if (!optional.isEmpty()) {
                     bookDao.deleteById(id);
-                    return CafeUtils.getResponseEntity("Book Removed Successfully", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Book Removed Successfully", HttpStatus.OK);
                 } else {
-                    return CafeUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
                 }
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
@@ -137,17 +136,17 @@ public class BookServiceImpl implements BookService {
                 Optional optional = bookDao.findById(Integer.parseInt(requestMap.get("id")));
                 if (!optional.isEmpty()) {
                     bookDao.updateBookStatus(requestMap.get("status"), Integer.parseInt(requestMap.get("id")));
-                    return CafeUtils.getResponseEntity("Book Status Updated Successfully", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Book Status Updated Successfully", HttpStatus.OK);
                 } else {
-                    return CafeUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
+                    return BookstoreUtils.getResponseEntity("Book ID does not exist", HttpStatus.OK);
                 }
             } else {
-                return CafeUtils.getResponseEntity(CafeConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
+                return BookstoreUtils.getResponseEntity(BookstoreConstants.UNAUTHORIZED_ACCESS, HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return CafeUtils.getResponseEntity(CafeConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+        return BookstoreUtils.getResponseEntity(BookstoreConstants.SOMETHING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @Override
